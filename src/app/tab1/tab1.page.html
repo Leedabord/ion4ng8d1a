@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> tab1.html {{ tvalue }}  </ion-title>
+    <ion-button (click) ="presentToast()" slot="end" fill="clear">Next</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-list> <ion-card  *ngFor="let qq of quotes">
+<h6 slot="center"> {{ qq.utilkey }}   </h6>
+<div slot="end"> ~  {{qq._id }}  </div>
+</ion-card> </ion-list>
+
+</ion-content>
