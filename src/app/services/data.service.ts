@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Contact } from '../models/contact';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 
@@ -9,18 +9,56 @@ import { tap, map } from 'rxjs/operators';
 })
 export class DataService {
 
+  aaposts: Observable<any>;
+  status = "null";
+
+  readonly restdbURL = 'https://gwfl-256d.restdb.io/rest/utility';
+//  'https://api.airtable.com/v0/app0hohtq4b1nM0Kb/FavQuotes?api_key=key66fQg5IghIIQmb';
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'x-apikey': '5821f61550e9b39131fe1b6f'  // 569a2b87566759cf4b984a50'  // 5821f61550e9b39131fe1b6f
+    })
+  }
+
   private contacts: Contact[];
 
   private lastId: number = 20;
 
-  constructor(private http: HttpClient) {}
+  constructor(private httpC: HttpClient) {}
+
+  restdbGet() { 
+    this.httpC.get<any>(this.restdbURL, this.httpOptions).subscribe(
+      data => {
+        this.aaposts = data;
+      console.log('restdbGet:: ', this.aaposts, ' ::');
+      },
+      error => { console.error('restdbGet:: That-s an error!', error) }
+    )
+  }
+
+  restdbDel() { 
+    var delURL = this.restdbURL + '/5f6ab12510feee5100017131';
+    this.httpC.delete(delURL, this.httpOptions)
+    .subscribe({
+        next: data => {
+            this.status = 'Delete successful';
+            console.log(this.status);
+        },
+        error: error => {
+            this.status = error.message;
+            console.error('Err Deleting:: ', this.status);
+        }
+    });
+  }
 
   getContacts(): Observable<Contact[]> {
     if (this.contacts) {
       return of(this.contacts);
     } else {
       // fetch contacts
-      return this.http.get<Contact[]>('./assets/contacts.json')
+      return this.httpC.get<Contact[]>('./assets/contacts.json')
       .pipe(tap(contacts => this.contacts = contacts));
     }
   }

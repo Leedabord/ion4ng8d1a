@@ -6,6 +6,8 @@ import { Random } from "random-js";
 
 import { PopoverController, ToastController } from '@ionic/angular';
 import { Tab2aPage } from '../tab2a/tab2a.page';
+import { DataService } from '../services/data.service';
+import { Data } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -14,34 +16,18 @@ import { Tab2aPage } from '../tab2a/tab2a.page';
 })
 export class Tab1Page { 
 
-  readonly airtableURL = 'https://gwfl-256d.restdb.io/rest/utility';
-
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'x-apikey': '5821f61550e9b39131fe1b6f'  // 569a2b87566759cf4b984a50'  // 5821f61550e9b39131fe1b6f
-    })
-  }
-
 quotes: Observable<any>;  
 tvalue: number; trandom: Random;
 skins: { name: string; ws: number; sf9: number; sb9: number; s18: number; harr: { par: number; hcap: number; hs: number; }[]; }[];
 
   constructor(
     private httpC: HttpClient, 
+    private dataSvc: DataService, 
     public popoverController: PopoverController,
     public toastCtrl: ToastController
-    ) {
-
-      this.httpC.get<any>(this.airtableURL, this.httpOptions).subscribe(
-      data => {
-          this.quotes = data;
-        console.log('qq:: ', this.quotes);
-      },
-      error => { console.error('http:: That.s an error!', error) }
-  )
-
-}
+    ) { 
+      this.quotes = this.dataSvc.aaposts;
+  }
 
   async presentPopover(ev: any) {
     const popover = await this.popoverController.create({

@@ -6,34 +6,6 @@
 </ion-header>
 
 <ion-content>
-<ion-list> <ion-card  *ngFor="let qq of quotes">
-<h6 slot="center"> {{ qq.utilkey }}   </h6>
-<div slot="end"> ~  {{qq._id }}  </div>
-</ion-card> </ion-list>
-
-<ion-item class="input-item"> L-1:: 
-<ion-input type="text" placeholder="Buy/Sell" > </ion-input>  
-<ion-input type="text" placeholder="qty" > </ion-input>  
-<ion-input type="text" placeholder="exp" > </ion-input>  
-<ion-input type="text" placeholder="strike" > </ion-input>  
-<ion-input type="text" placeholder="Call/Put" clearInput autocapitalize="off" inputmode="email"></ion-input>
-</ion-item>
-
-<ion-item class="input-item"> L-2: 
-<ion-input type="text" placeholder="Buy/Sell" > </ion-input>  
-<ion-input type="text" placeholder="qty" > </ion-input>  
-<ion-input type="text" placeholder="exp" > </ion-input>  
-<ion-input type="text" placeholder="strike" > </ion-input>  
-<ion-input type="text" placeholder="Call/Put" clearInput autocapitalize="off" inputmode="email"></ion-input>
-</ion-item>
-
-<ion-item class="input-item"> L-3: 
-<ion-input type="text" placeholder="Buy/Sell" > </ion-input>  
-<ion-input type="text" placeholder="qty" > </ion-input>  
-<ion-input type="text" placeholder="exp" > </ion-input>  
-<ion-input type="text" placeholder="strike" > </ion-input>  
-<ion-input type="text" placeholder="Call/Put" clearInput autocapitalize="off" inputmode="email"></ion-input>
-</ion-item>
 
 <ion-item class="input-item"> L-4: 
 <ion-input type="text" placeholder="Buy/Sell" > </ion-input>  
@@ -49,5 +21,9 @@
 <ion-input type="text" placeholder="Size" > </ion-input>  
 </ion-item>
 
+<ion-list> <ion-card  *ngFor="let qq of quotes">
+<h6 slot="center"> {{ qq.utilkey }}   </h6>
+<div slot="end"> ~  {{qq._id }}  </div>
+</ion-card> </ion-list>
 
 </ion-content>
