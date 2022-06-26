@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Contact } from '../models/contact';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
+import { tap, map, retry, catchError, } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -26,17 +26,21 @@ export class DataService {
 
   private lastId: number = 20;
 
-  constructor(private httpC: HttpClient) {}
+  constructor(private httpC: HttpClient) { }
 
   restdbGet() { 
     this.httpC.get<any>(this.restdbURL, this.httpOptions).subscribe(
       data => {
         this.aaposts = data;
         this.status = 'restdbGet-ok';
-      console.log('restdbGet:: ', this.aaposts, ' ::', this.status);
+        console.log('restdbGet:: ', this.aaposts, ' ::', this.status);
       },
       error => { console.error('restdbGet:: That-s an error!', error) }
     )
+  }
+
+  public sendGetRequest(){
+    return this.httpC.get(this.restdbURL, this.httpOptions).pipe(retry(3)); // , catchError(this.handleError)
   }
 
   restdbDel() { 
