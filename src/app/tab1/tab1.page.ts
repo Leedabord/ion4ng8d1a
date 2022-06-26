@@ -22,12 +22,12 @@ skins: { name: string; ws: number; sf9: number; sb9: number; s18: number; harr: 
 
   constructor(
     private httpC: HttpClient, 
-    private dataSvc: DataService, 
+    dataSvc: DataService, 
     public popoverController: PopoverController,
     public toastCtrl: ToastController
     ) { 
-      console.log("aaposts:: >>", this.dataSvc.aaposts);
-      this.quotes = this.dataSvc.aaposts;
+      console.log("aaposts:: >>", dataSvc.status, dataSvc.aaposts);
+    //  this.quotes = dataSvc.aaposts;
   }
 
   async presentPopover(ev: any) {

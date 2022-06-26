@@ -9,7 +9,7 @@ import { tap, map } from 'rxjs/operators';
 })
 export class DataService {
 
-  aaposts: Observable<any>;
+  aaposts: [ {utilkey: "utilkey001" } ];
   status = "null";
 
   readonly restdbURL = 'https://gwfl-256d.restdb.io/rest/utility';
@@ -32,7 +32,8 @@ export class DataService {
     this.httpC.get<any>(this.restdbURL, this.httpOptions).subscribe(
       data => {
         this.aaposts = data;
-      console.log('restdbGet:: ', this.aaposts, ' ::');
+        this.status = 'restdbGet-ok';
+      console.log('restdbGet:: ', this.aaposts, ' ::', this.status);
       },
       error => { console.error('restdbGet:: That-s an error!', error) }
     )
