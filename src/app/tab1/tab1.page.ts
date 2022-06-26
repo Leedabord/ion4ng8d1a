@@ -26,6 +26,7 @@ skins: { name: string; ws: number; sf9: number; sb9: number; s18: number; harr: 
     public popoverController: PopoverController,
     public toastCtrl: ToastController
     ) { 
+      console.log("aaposts:: >>", this.dataSvc.aaposts);
       this.quotes = this.dataSvc.aaposts;
   }
 
