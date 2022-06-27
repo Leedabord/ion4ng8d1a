@@ -1,7 +1,5 @@
 import { Component, Injectable, OnInit } from '@angular/core';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
-import { catchError, map, tap } from 'rxjs/operators';
 import { Random } from "random-js";
 
 import { PopoverController, ToastController } from '@ionic/angular';
@@ -21,7 +19,6 @@ tvalue: number; trandom: Random;
 skins: { name: string; ws: number; sf9: number; sb9: number; s18: number; harr: { par: number; hcap: number; hs: number; }[]; }[];
 
   constructor(
-    private httpC: HttpClient, 
     dataSvc: DataService, 
     public popoverController: PopoverController,
     public toastCtrl: ToastController
@@ -30,7 +27,7 @@ skins: { name: string; ws: number; sf9: number; sb9: number; s18: number; harr: 
     dataSvc.rdbGet().subscribe((data: any[])=>{
       this.quotes = data;
       console.log("this.quotes:: ", this.quotes);
-      }) 
+    }) 
   }
 
   async presentPopover(ev: any) {
@@ -42,8 +39,7 @@ skins: { name: string; ws: number; sf9: number; sb9: number; s18: number; harr: 
     });
     return await popover.present();
   }
-
-  
+ 
   async presentToast() {
 
   this.trandom = new Random(); // uses the nativeMath engine
@@ -52,13 +48,6 @@ skins: { name: string; ws: number; sf9: number; sb9: number; s18: number; harr: 
   
   this.skins = [ {name: "", ws: 0, sf9: 0, sb9: 0, s18: 0, 
   harr: [ { par: 4, hcap: 0, hs: 0 } ] } ];
-  
-    const toast = await this.toastCtrl.create({
-      message: this.quotes[this.tvalue -1].fields.groupKey,
-      position: 'middle',
-      duration: 3000
-    });
-    toast.present();
   }
-
+  
 }

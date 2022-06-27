@@ -9,7 +9,7 @@ import { tap, map, retry, catchError } from 'rxjs/operators';
 })
 export class DataService {
 
-  aaposts: [];
+  aaposts: [ {} ];
   status = "null";
 
   readonly rdbURL = 'https://gwfl-256d.restdb.io/rest/utility';
@@ -26,13 +26,19 @@ export class DataService {
 
   private lastId: number = 20;
 
-  constructor(private httpC: HttpClient) { }
+  constructor(private httpC: HttpClient) { 
+    this.rdbGet().subscribe((data: any[])=>{
+      this.aaposts =  { ...data };
+      console.log("dataSvc aaposts:: ", this.aaposts);
+      }) 
+
+  }
 
   public rdbGet(): Observable<any> {
     return this.httpC.get<any>(this.rdbURL, this.httpOptions);
   }
 
-  rdbDel() { 
+  public rdbDel() { 
     var delURL = this.rdbURL + '/5f6ab12510feee5100017131';
     this.httpC.delete(delURL, this.httpOptions)
     .subscribe({
