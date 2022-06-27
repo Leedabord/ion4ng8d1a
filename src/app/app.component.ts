@@ -17,12 +17,12 @@ export class AppComponent implements OnInit {
     private dataSvc: DataService) {  }
 
   ngOnInit() { 
-    this.dataSvc.restdbGet();
 
-    // this.dataSvc.restdbGet().subscribe((data: any[])=>{
-    //   console.log("ngOnInit-1:: ", data);
-    //   this.aaposts = data;
-    // })  
+    dataSvc.sendGetRequest().subscribe((data: any[])=>{
+      this.aaposts = data;
+      console.log("this.quotes:: ", this.aaposts);
+      }) 
+ //     console.log("aaposts:: >>", dataSvc.status, dataSvc.aaposts);
   
   }
 }
