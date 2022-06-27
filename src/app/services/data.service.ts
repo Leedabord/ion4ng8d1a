@@ -25,12 +25,7 @@ export class DataService {
   private contacts: Contact[];
   private lastId: number = 20;
 
-  constructor(private httpC: HttpClient) { 
-    this.rdbGet().subscribe((data: any[])=>{
-      this.aaposts = data;
-      console.log("dataSvc aaposts:: ", this.aaposts);
-      });
-  }
+  constructor(private httpC: HttpClient) { }
 
   public rdbGet(): Observable<any> {
     return this.httpC.get<any>(this.rdbURL, this.httpOptions);

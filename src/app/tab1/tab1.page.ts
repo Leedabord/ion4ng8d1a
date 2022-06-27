@@ -1,11 +1,9 @@
 import { Component, Injectable, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
 import { Random } from "random-js";
 
 import { PopoverController, ToastController } from '@ionic/angular';
 import { Tab2aPage } from '../tab2a/tab2a.page';
 import { DataService } from '../services/data.service';
-import { Data } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -46,7 +44,7 @@ skins: { name: string; ws: number; sf9: number; sb9: number; s18: number; harr: 
 
   this.trandom = new Random(); // uses the nativeMath engine
   this.tvalue = this.trandom.integer(1, 25);
- console.log('val:: ', this.tvalue, this.quotes[this.tvalue -1].fields.groupKey);
+  console.log('val:: ', this.tvalue, this.quotes[this.tvalue -1].fields.groupKey);
   
   this.skins = [ {name: "", ws: 0, sf9: 0, sb9: 0, s18: 0, 
   harr: [ { par: 4, hcap: 0, hs: 0 } ] } ];
