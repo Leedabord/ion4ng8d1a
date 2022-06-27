@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Contact } from '../models/contact';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { tap, map, retry, catchError, } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
+import { tap, map, retry, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -39,8 +39,8 @@ export class DataService {
     )
   }
 
-  public sendGetRequest(){
-    return this.httpC.get(this.restdbURL, this.httpOptions).pipe(retry(3)); // , catchError(this.handleError)
+  public sendGetRequest(): Observable<any> {
+    return this.httpC.get<any>(this.restdbURL, this.httpOptions);
   }
 
   restdbDel() { 
@@ -93,4 +93,15 @@ export class DataService {
     let itemIndex = this.contacts.findIndex(item => item.id == id);
     return this.contacts.splice(itemIndex, 1)[0];
   }
+
+  errorHandler(error:any) {
+    let errorMessage = '';
+    if(error.error instanceof ErrorEvent) {
+      errorMessage = error.error.message;
+    } else {
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    return throwError(errorMessage);
+ }
+
 }

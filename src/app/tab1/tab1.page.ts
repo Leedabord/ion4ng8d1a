@@ -26,6 +26,11 @@ skins: { name: string; ws: number; sf9: number; sb9: number; s18: number; harr: 
     public popoverController: PopoverController,
     public toastCtrl: ToastController
     ) { 
+
+      this.dataSvc.sendGetRequest().subscribe((data: any[])=>{
+        console.log(data);
+        this.quotes = data;
+      }) 
       console.log("aaposts:: >>", dataSvc.status, dataSvc.aaposts);
     //  this.quotes = dataSvc.aaposts;
   }
