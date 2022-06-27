@@ -14,15 +14,17 @@ export class AppComponent implements OnInit {
   status = "null";
 
   constructor(private platform: Platform,
-    private dataSvc: DataService) {  }
+    private dataSvc: DataService) { 
+
+      dataSvc.rdbGet().subscribe((data: any[])=>{
+        this.aaposts = data;
+        console.log("aaposts:: ", this.aaposts);
+        }) 
+   //     console.log("aaposts:: >>", dataSvc.status, dataSvc.aaposts);
+  
+     }
 
   ngOnInit() { 
-
-    dataSvc.sendGetRequest().subscribe((data: any[])=>{
-      this.aaposts = data;
-      console.log("this.quotes:: ", this.aaposts);
-      }) 
- //     console.log("aaposts:: >>", dataSvc.status, dataSvc.aaposts);
   
   }
 }

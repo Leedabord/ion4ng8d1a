@@ -9,10 +9,10 @@ import { tap, map, retry, catchError } from 'rxjs/operators';
 })
 export class DataService {
 
-  aaposts: [ {utilkey: "utilkey001" } ];
+  aaposts: [];
   status = "null";
 
-  readonly restdbURL = 'https://gwfl-256d.restdb.io/rest/utility';
+  readonly rdbURL = 'https://gwfl-256d.restdb.io/rest/utility';
 //  'https://api.airtable.com/v0/app0hohtq4b1nM0Kb/FavQuotes?api_key=key66fQg5IghIIQmb';
 
   httpOptions = {
@@ -28,23 +28,12 @@ export class DataService {
 
   constructor(private httpC: HttpClient) { }
 
-  restdbGet() { 
-    this.httpC.get<any>(this.restdbURL, this.httpOptions).subscribe(
-      data => {
-        this.aaposts = data;
-        this.status = 'restdbGet-ok';
-        console.log('restdbGet:: ', this.aaposts, ' ::', this.status);
-      },
-      error => { console.error('restdbGet:: That-s an error!', error) }
-    )
+  public rdbGet(): Observable<any> {
+    return this.httpC.get<any>(this.rdbURL, this.httpOptions);
   }
 
-  public sendGetRequest(): Observable<any> {
-    return this.httpC.get<any>(this.restdbURL, this.httpOptions);
-  }
-
-  restdbDel() { 
-    var delURL = this.restdbURL + '/5f6ab12510feee5100017131';
+  rdbDel() { 
+    var delURL = this.rdbURL + '/5f6ab12510feee5100017131';
     this.httpC.delete(delURL, this.httpOptions)
     .subscribe({
         next: data => {

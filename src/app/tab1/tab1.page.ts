@@ -27,7 +27,7 @@ skins: { name: string; ws: number; sf9: number; sb9: number; s18: number; harr: 
     public toastCtrl: ToastController
     ) { 
 
-    dataSvc.sendGetRequest().subscribe((data: any[])=>{
+    dataSvc.rdbGet().subscribe((data: any[])=>{
       this.quotes = data;
       console.log("this.quotes:: ", this.quotes);
       }) 
