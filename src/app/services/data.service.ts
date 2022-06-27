@@ -9,8 +9,8 @@ import { tap, map, retry, catchError } from 'rxjs/operators';
 })
 export class DataService {
 
-  aaposts: [ {} ];
-  status = "null";
+  public aaposts: [];
+  public status = "null";
 
   readonly rdbURL = 'https://gwfl-256d.restdb.io/rest/utility';
 //  'https://api.airtable.com/v0/app0hohtq4b1nM0Kb/FavQuotes?api_key=key66fQg5IghIIQmb';
@@ -23,15 +23,13 @@ export class DataService {
   }
 
   private contacts: Contact[];
-
   private lastId: number = 20;
 
   constructor(private httpC: HttpClient) { 
     this.rdbGet().subscribe((data: any[])=>{
-      this.aaposts =  { ...data };
+      this.aaposts = data;
       console.log("dataSvc aaposts:: ", this.aaposts);
-      }) 
-
+      });
   }
 
   public rdbGet(): Observable<any> {

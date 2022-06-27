@@ -15,6 +15,7 @@ import { Data } from '@angular/router';
 export class Tab1Page { 
 
 quotes = [];  
+status = "nothing";
 tvalue: number; trandom: Random;
 skins: { name: string; ws: number; sf9: number; sb9: number; s18: number; harr: { par: number; hcap: number; hs: number; }[]; }[];
 
@@ -23,7 +24,8 @@ skins: { name: string; ws: number; sf9: number; sb9: number; s18: number; harr: 
     public popoverController: PopoverController,
     public toastCtrl: ToastController
     ) { 
-
+    
+    this.status = dataSvc.status;
     dataSvc.rdbGet().subscribe((data: any[])=>{
       this.quotes = data;
       console.log("this.quotes:: ", this.quotes);
@@ -49,5 +51,5 @@ skins: { name: string; ws: number; sf9: number; sb9: number; s18: number; harr: 
   this.skins = [ {name: "", ws: 0, sf9: 0, sb9: 0, s18: 0, 
   harr: [ { par: 4, hcap: 0, hs: 0 } ] } ];
   }
-  
+
 }
