@@ -16,7 +16,7 @@ import { Data } from '@angular/router';
 })
 export class Tab1Page { 
 
-quotes: Observable<any>;  
+quotes = [];  
 tvalue: number; trandom: Random;
 skins: { name: string; ws: number; sf9: number; sb9: number; s18: number; harr: { par: number; hcap: number; hs: number; }[]; }[];
 
@@ -27,9 +27,9 @@ skins: { name: string; ws: number; sf9: number; sb9: number; s18: number; harr: 
     public toastCtrl: ToastController
     ) { 
 
-      this.dataSvc.sendGetRequest().subscribe((data: any[])=>{
-        console.log(data);
-        this.quotes = data;
+    dataSvc.sendGetRequest().subscribe((data: any[])=>{
+      this.quotes = data;
+      console.log("this.quotes:: ", this.quotes);
       }) 
       console.log("aaposts:: >>", dataSvc.status, dataSvc.aaposts);
     //  this.quotes = dataSvc.aaposts;
