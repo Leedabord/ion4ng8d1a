@@ -31,8 +31,6 @@ skins: { name: string; ws: number; sf9: number; sb9: number; s18: number; harr: 
       this.quotes = data;
       console.log("this.quotes:: ", this.quotes);
       }) 
-      console.log("aaposts:: >>", dataSvc.status, dataSvc.aaposts);
-    //  this.quotes = dataSvc.aaposts;
   }
 
   async presentPopover(ev: any) {

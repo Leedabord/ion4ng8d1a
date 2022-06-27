@@ -18,9 +18,9 @@ export class AppComponent implements OnInit {
 
       dataSvc.rdbGet().subscribe((data: any[])=>{
         this.aaposts = data;
-        console.log("aaposts:: ", this.aaposts);
+        console.log("appC aaposts:: ", this.aaposts);
+        console.log("aaposts:: >>", dataSvc.status, dataSvc.aaposts);
         }) 
-   //     console.log("aaposts:: >>", dataSvc.status, dataSvc.aaposts);
   
      }
 
