@@ -15,9 +15,10 @@ export class DataService {
   public aaposts: [];
   public status = "null";
 
-  readonly rdbURL = 'https://api.airtable.com/v0/app0hohtq4b1nM0Kb/Scores?api_key=key66fQg5IghIIQmb';
-//   readonly rdbURL = 'https://gwfl-256d.restdb.io/rest/utility';
-// 'https://api.airtable.com/v0/app0hohtq4b1nM0Kb/FavQuotes?api_key=key66fQg5IghIIQmb';
+   readonly rdbURL = 
+      'https://gwfl-256d.restdb.io/rest/utility';
+   // 'https://gwfl-256d.restdb.io/rest/utility';
+   // 'https://api.airtable.com/v0/app0hohtq4b1nM0Kb/FavQuotes?api_key=key66fQg5IghIIQmb';
 
   httpOptions = {
     headers: new HttpHeaders({
