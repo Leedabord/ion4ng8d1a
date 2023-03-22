@@ -21,12 +21,12 @@
 <ion-input type="text" placeholder="Size" > </ion-input>  
 </ion-item>
 
-<div> // {{quotes}} // </div>
+<!-- div> // {{quotes}} // </div -->
 
 <ion-list> 
   <ion-card  *ngFor="let qq of quotes">
-<h6 slot="center"> {{ qq.utilkey }}   </h6>
-<div slot="end"> ~  {{qq._id }}  </div>
+<h6 slot="center"> {{ qq.fields.Score }}   </h6>
+<div slot="end"> ~  {{qq.id }}  </div>
 </ion-card> 
 </ion-list>
 

@@ -25,7 +25,7 @@ skins: { name: string; ws: number; sf9: number; sb9: number; s18: number; harr: 
     
     this.status = dataSvc.status;
     dataSvc.rdbGet().subscribe((data: any[])=>{
-      this.quotes = data;
+      this.quotes = data.records; 
       console.log("this.quotes:: ", this.quotes);
     }) 
   }
