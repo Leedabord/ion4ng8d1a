@@ -19,7 +19,26 @@
 <ion-input type="text" placeholder="SYM" > </ion-input>  
 <ion-input type="text" placeholder="Cost" > </ion-input>  
 <ion-input type="text" placeholder="Size" > </ion-input>  
+
+<ion-chip>Default</ion-chip>
+<ion-chip disabled="true">Disabled</ion-chip>
+<ion-chip outline="true">Outline</ion-chip>
+
 </ion-item>
+
+<ion-list>
+  <ion-item color="light">
+      <ion-label>First Accordion</ion-label>
+    </ion-item>
+  <ion-item>
+    <ion-badge slot="start">11</ion-badge>
+    <ion-label>Badge in start slot</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-badge slot="end">22</ion-badge>
+    <ion-label>Badge in end slot</ion-label>
+  </ion-item>
+</ion-list>
 
 <ion-list> 
   <ion-card  *ngFor="let qq of quotes">
