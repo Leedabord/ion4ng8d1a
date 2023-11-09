@@ -20,6 +20,8 @@ export class AppComponent implements OnInit {
         this.aaposts = data;
         console.log("appC aaposts:: ", JSON.stringify(this.aaposts) );
         console.log("aaposts:: >>", dataSvc.status, this.aaposts);
+        // 
+        console.log(Math.trunc(19/18));
         }) 
   
   }
