@@ -15,18 +15,16 @@ export class AppComponent implements OnInit {
 
   constructor(private platform: Platform,
     private dataSvc: DataService) { 
-
       dataSvc.rdbGet().subscribe((data: any[])=>{
         this.aaposts = data;
         console.log("appC aaposts:: ", JSON.stringify(this.aaposts) );
         console.log("aaposts:: >>", dataSvc.status, this.aaposts);
         // 
         console.log(Math.trunc(19/18));
-        }) 
-  
+        })     
   }
 
   ngOnInit() { 
-  
+
   }
 }
